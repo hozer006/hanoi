@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <title>Tower of Hanoi</title>
+</head>
+<body>
+    <h1>Tower of Hanoi</h1>
+    <div id="app">
+        <button v-if="startbtn.visible" @click="onStart">{{startbtn.text}}</button>
+        <button @click="init">Reset</button>
+
+        <p>Progress: {{counter}} / {{sequence.length}} Moves</p>
+
+        <div class="flex" :style="'--bricks:' + bricks">
+            <div class="col" v-for="item in towers">
+               <template v-for="key in item">
+				<span class="brick" :style="'--val:'+ key"></span>
+			</template>
+            </div>
+        </div>
+
+        <button @click="addBrick">+ Brick</button>
+        <button @click="removeBrick">- Brick</button>
+        <label>
+            Delay {{speed}} ms <br>
+            <input type="range" step="50" max="1000" @change="init" v-model="speed">
+        </label>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
